@@ -1,0 +1,97 @@
+/* Checkout progrress bar */
+.checkout-progress-bar {
+  display: flex;
+  align-items: center;
+  margin-left: 18px;
+  margin-top: 18px;
+}
+
+.cchekout-page {
+  display: flex;
+  flex-direction: row;
+}
+
+.checkout-progress-bar div {
+  border: 1px solid #c4c4c4;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkout-progress-bar span {
+  width: 100px;
+  height: 1px;
+  background-color: #c4c4c4;
+}
+
+.checkout-progress-bar .active-line {
+  background-color: var(--primary);
+}
+
+.checkout-progress-bar .active-progress {
+  background-color: var(--primary);
+  border: none;
+}
+
+.checkout-progress-bar .active-progress p {
+  color: #ffffff;
+}
+
+/* Menu box */
+
+.checkout-menu-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 18px;
+  margin-top: 18px;
+  margin-bottom: 18px;
+  border: 1px solid #c4c4c4;
+  width: fit-content;
+  border-radius: 30px;
+  padding: 50px;
+  width: 500px;
+}
+
+.checkout-menu-title {
+  font-size: 24px;
+  margin: 0;
+}
+
+.checkout-buttons {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.checkout-buttons button {
+  margin-top: 10px;
+  width: 200px;
+  font-size: 24px;
+  height: 50px;
+}
+
+.login-inputs {
+  flex-wrap: wrap;
+  flex-direction: row;
+  width: 350px;
+}
+
+.login-inputs span {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 165px;
+  height: 75px;
+  border-radius: 10px;
+  background-color: var(--secondary);
+  border: 1px solid var(--primary);
+  margin-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+}

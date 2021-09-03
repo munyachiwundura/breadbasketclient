@@ -1,0 +1,137 @@
+.login-container {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.login-or-register {
+  display: flex;
+  width: 350px;
+  height: 100px;
+}
+
+.login-or-register div {
+  display: flex;
+  align-items: center;
+  background-color: #f5f5f5;
+  font-size: 18px;
+  padding: 25px;
+  text-align: center;
+  width: 175px;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+.login-or-register div:hover {
+  box-shadow: 0 2px 15px var(--secondary-darker);
+  color: var(--primary);
+}
+
+.login {
+  border-radius: 10px 0 0 10px;
+}
+
+.register {
+  border-radius: 0 10px 10px 0;
+}
+
+#activeForm {
+  background-color: var(--primary);
+  color: #ffffff;
+}
+
+#activeForm:hover {
+  box-shadow: 0 1px 15px var(--primary);
+}
+
+.login-inputs {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.login-inputs div {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 350px;
+  height: 75px;
+  border-radius: 10px;
+  background-color: var(--secondary);
+  border: 1px solid var(--primary);
+  margin-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.login-inputs input {
+  width: 100%;
+  height: 25px;
+  border-radius: 5px;
+  background-color: rgba(4, 191, 138, 0.15);
+  border: none;
+}
+
+.login-inputs div i {
+  position: absolute;
+  cursor: pointer;
+  right: 30px;
+}
+
+.forgot-password {
+  margin-top: 20px;
+  margin-left: 0;
+  align-self: flex-start;
+}
+
+.forgot-password p {
+  margin: 0;
+}
+.forgot-password a {
+  color: royalblue;
+  cursor: pointer;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-button {
+  display: flex;
+  justify-content: center;
+}
+
+.register-button button {
+  width: 250px;
+  height: 50px;
+  margin-bottom: 20px;
+}
+
+.register-button {
+  display: flex;
+  justify-content: center;
+}
+
+.terms-checkbox {
+  display: flex;
+}
+
+.terms-checkbox p {
+  margin-left: 10px;
+}
+
+.forgot-password a:hover {
+  text-decoration: underline;
+}
+
+.login-button button {
+  width: 250px;
+  height: 50px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}

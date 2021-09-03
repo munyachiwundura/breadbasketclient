@@ -1,0 +1,49 @@
+[{
+    "id": "Cerevita Cocoa & Malt",
+    "name": "Cerevita Cocoa & Malt",
+    "price": 60,
+    "description":"bata chipattern icho inzwa chigaffa chauya nechimbo",
+    "category": "Cereal",
+    "image": "/img/cerevita_choco_and_malt.png"
+}
+,
+{
+    "id": "Mazoe Orange Crush",
+    "name": "Mazoe Orange Crush",
+    "price": 50,
+    "description":"Mazoe Orange Crush is a homegrown cordinal that has been trusted by generations of mothers to give real refreshment for their families. Every bottle of Mazoe Orange Crush is packed with 50% orange juice to give it that authentic, tangy orange taste that only Mazoe is renowned for. It is great as a mixer for cocktails, fruit juice punchese and ingridient for fruit smoothies.",
+    "category": "Drinks",
+    "image": "/img/mazoe_orange.png"
+
+}
+,
+{
+    "id": "Pfuko Maheu Original",
+    "name": "Pfuko Maheu Original",
+    "price": 20,
+    "description":"bata chipattern icho inzwa chigaffa chauya nechimbo",
+    "category": "Drinks",
+    "image": "/img/pfuko_maheu_original.png"
+
+}
+,
+{
+    "id": "RabRoy Tomatoe Sauce",
+    "name": "RabRoy Tomatoe Sauce",
+    "price": 35,
+    "description":"bata chipattern icho inzwa chigaffa chauya nechimbo",
+    "category": "Sauces",
+    "image": "/img/rabroy_tomatoe_sauce.png"
+
+}
+,
+{
+    "id": "Lyons Peanut Butter",
+    "name": "Lyons Peanut Butter",
+    "price": 40,
+    "description":"bata chipattern icho inzwa chigaffa chauya nechimbo",
+    "category": "Sauces",
+    "image": "/img/lyons_peanut_butter_small.png"
+
+}
+]
