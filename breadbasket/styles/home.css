@@ -1,3 +1,5 @@
+/* Billboard */
+
 .jumbotron {
   display: flex;
   flex-wrap: wrap;
@@ -16,57 +18,43 @@
   align-items: center;
   justify-content: center;
   height: 400px;
-  width: 350px;
+  width: 50%;
+}
+.jumbotron-text-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 64px;
+  justify-content: center;
+  height: 400px;
+  width: 50%;
+}
+
+.jumbotron-text {
+  width: 100%;
+  position: relative;
+  font-size: 36px;
+  line-height: 42px;
+  margin-bottom: 42px;
 }
 
 .jumbotron-image {
   position: absolute;
 }
-#billboardCerevita {
-  height: 300px;
-}
 
-#billboardLyons {
-  height: 300px;
-}
-
-#billboardRabroy {
-  height: 300px;
-}
-
-#billboardMazoe {
-  height: 300px;
-}
-
-#billboardPfuko {
-  height: 300px;
+#billboardImageMultiProduct {
+  width: 100%;
 }
 
 #macbook {
-  width: 200px;
-  right: 150px;
+  width: 50%;
+  right: 35%;
 }
 
 #iphone {
-  width: 200px;
-  left: 150px;
-}
-
-.jumbotron-text-container {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  padding: 0px 0px 0px 30px;
-  justify-content: center;
-  height: 400px;
-  width: 350px;
-}
-
-.jumbotron-text {
-  width: 300px;
-  position: relative;
-  font-size: 30px;
-  bottom: 20px;
+  width: 50%;
+  left: 50%;
+  bottom: 20%;
 }
 
 .jumbotron-call-to-action {
@@ -92,15 +80,7 @@
   box-shadow: 0 2px 25px rgba(255, 0, 130, 0.2);
 }
 
-.circular-button {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  font-size: 15px;
-  border: none;
-  cursor: pointer;
-  background-color: var(--secondary-darker);
-}
+/* Section */
 
 .section-scroll-and-title {
   display: flex;
@@ -108,26 +88,32 @@
   width: 90%;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 30px;
+  margin-top: 64px;
+  margin-bottom: 11px;
 }
 
 .section-scroll-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 80px;
+  width: 100px;
+}
+
+.category-cards-section {
+  height: 320px;
 }
 
 .category-cards-container {
-  width: 90%;
+  width: 95%;
   margin-right: auto;
   margin-left: auto;
   padding-top: 10px;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
   height: 250px;
   overflow: hidden;
+  transition: all ease-in-out 0.5s;
 }
 
 .category-card {
@@ -135,7 +121,7 @@
   bottom: 0;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   width: 200px;
   height: 200px;
@@ -146,6 +132,10 @@
   cursor: pointer;
 }
 
+.category-card p {
+  margin-top: 5px;
+}
+
 .category-card:hover {
   background-color: #181b1a;
   bottom: 20px;
@@ -154,7 +144,8 @@
 .category-card-svg {
   width: 100px;
   height: 100px;
-  fill: var(--primary);
+  filter: invert(52%) sepia(37%) saturate(3100%) hue-rotate(128deg)
+    brightness(98%) contrast(97%);
 }
 
 .category-card:hover > .category-card-text {
@@ -167,7 +158,7 @@
 
 .product-card {
   width: 300px;
-  margin: 30px 10px 30px 10px;
+  margin: 36px;
   overflow: visible;
 }
 
@@ -221,17 +212,17 @@
 }
 
 .product-card-title {
-  font-size: 26px;
-  margin-top: 8px;
+  font-size: 24px;
+  margin-top: 28px;
   margin-bottom: 16px;
-  text-align: center;
+  text-align: left;
 }
 
 .product-category-and-price {
   display: flex;
-  padding-right: 30px;
-  padding-left: 30px;
   justify-content: space-between;
+  align-items: center;
+  height: 40px;
 }
 
 .product-category-and-price button {
@@ -266,6 +257,7 @@
   justify-content: space-evenly;
   flex-wrap: wrap;
   justify-content: center;
+  margin-bottom: 24px;
 }
 
 @media only screen and (max-width: 800px) {
@@ -274,18 +266,54 @@
     margin-left: auto;
     margin-right: auto;
     align-items: center;
-    height: auto;
-    padding: 25px 0 25px 0;
+    width: 100%;
+    height: fit-content;
+    padding: 0px 0px 64px 0px;
   }
   .jumbotron-text {
     text-align: center;
+    margin-top: 0;
+    font-size: 24px;
+    line-height: 29px;
   }
   .jumbotron-image-container {
     order: 1;
+    height: 250px;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
   }
   .section-title {
     width: 250px;
+  }
+  .category-cards-container {
+    position: relative;
+    bottom: 36px;
+    height: 150px;
+    width: fit-content;
+  }
+
+  .category-card {
+    width: 100px;
+    height: 100px;
+  }
+
+  .category-card p {
+    margin-top: 5px;
+    font-size: 18px;
+    margin-bottom: 5px;
+  }
+
+  .category-card:hover {
+    background-color: #181b1a;
+    bottom: 20px;
+  }
+
+  .category-card-svg {
+    width: 50px;
+    height: 50px;
+  }
+  .category-cards-section {
+    height: 210px;
   }
 }

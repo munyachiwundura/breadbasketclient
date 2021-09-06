@@ -1,15 +1,20 @@
+import React, { useState } from 'react';
+import { motion, transform } from "framer-motion";
+
 const CategoryCardSection = () => {
+  const [currentSelection, setCurrentSelection] = useState(0)
     return ( <div className='category-cards-section'>
     <div className='section-scroll-and-title'> 
      <SectionTitle title='Shop by Category' linkTitle='-Categories'/>
-     <SectionScroll />
+     <SectionScroll previousAction={() => setCurrentSelection(currentSelection < 0?  currentSelection + 100 : currentSelection)}  nextAction={() => setCurrentSelection(currentSelection > -500?  currentSelection - 100 : currentSelection)}/>
      </div>
-     <div className='category-cards-container'>
+     <div className='category-cards-container ' style={{transform: `translate(${currentSelection}px)`}}
+     >
       <CategoryCard title='Cereals' icon={<img src="/img/svg/cereal-svgrepo-com.svg" className='category-card-svg'/>}/>
-      <CategoryCard title='Drinks' icon={<img src="/img/svg/cereal-svgrepo-com.svg" className='category-card-svg'/>}/>
-      <CategoryCard title='Snacks' icon={<img src="/img/svg/cereal-svgrepo-com.svg" className='category-card-svg'/>}/>
-      <CategoryCard title='Sauces & Spices' icon={<img src="/img/svg/cereal-svgrepo-com.svg" className='category-card-svg'/>}/>
-      <CategoryCard title='Staples' icon={<img src="/img/svg/cereal-svgrepo-com.svg" className='category-card-svg'/>}/>
+      <CategoryCard title='Drinks' icon={<img src="/img/svg/bottle-svgrepo-com.svg" className='category-card-svg'/>}/>
+      <CategoryCard title='Snacks' icon={<img src="/img/svg/circular-biscuits-svgrepo-com.svg" className='category-card-svg'/>}/>
+      <CategoryCard title='Sauces & Spices' icon={<img src="/img/svg/spices-svgrepo-com.svg" className='category-card-svg'/>}/>
+      <CategoryCard title='Staples' icon={<img src="/img/svg/food-svgrepo-com.svg" className='category-card-svg'/>}/>
      </div>
   </div> );
 }
@@ -34,11 +39,11 @@ const CategoryCard = (props) => {
      );
   }
   
-  const SectionScroll = () => {
+  const SectionScroll = (props) => {
     return ( 
       <div className='section-scroll-container'>
-        <button className="circular-button"><i className='bi bi-chevron-left'></i></button>
-        <button className="circular-button"><i className='bi bi-chevron-right'></i></button>
+        <button onClick={props.previousAction} className="secondary-button"><i className='bi bi-chevron-left'></i></button>
+        <button onClick={props.nextAction} className="secondary-button"><i className='bi bi-chevron-right'></i></button>
       </div>
      );
   }

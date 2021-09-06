@@ -4,13 +4,14 @@ import productStyles from '../../styles/products.module.css'
 import Billboard from '../../comps/billboard';
 import ProductCardSection from '../../comps/productCards';
 import Image from 'next/image'
+import { useState } from 'react';
 
 
 const Product = (articles) => {
     const router = useRouter()
     const{id} = router.query
     const currentProduct = articles.articles.filter(x => {return x.id == id})
-    console.log(currentProduct[0].image)
+  const [ammount, setAmmount] = useState (1)
     return ( 
     <div>
         <Head>
@@ -32,9 +33,9 @@ const Product = (articles) => {
                     </div>
                     <div className='product-image'>
                         <img src={currentProduct[0].image}></img>
-                        <img id='productImageTwo' src={currentProduct[0].image}></img>
-                        <img id='productImageThree' src={currentProduct[0].image}></img>
-                        <p>9</p>
+                        {ammount > 1 && <img id='productImageTwo' src={currentProduct[0].image}></img>}
+                        {ammount > 2 && <img id={ammount > 3 ? 'productImageThreeDark' : 'productImageThree'} src={currentProduct[0].image}></img>}
+                        {ammount > 3 && <p> {ammount} </p>}
                 <div className='product-image-shadow'></div>
 
                     </div>
@@ -48,9 +49,9 @@ const Product = (articles) => {
                     </div>
                     <div className='quantity-and-add-to-cart'>
                         <div className='quantity-selector'>
-                            <i className='bi bi-chevron-down'></i>
-                            <p>11</p>
-                            <i className='bi bi-chevron-up'></i>
+                            <i onClick={() => setAmmount(ammount > 1 ? ammount - 1 : ammount)} className='bi bi-chevron-down'></i>
+                            <p>{ammount}</p>
+                            <i onClick={() => setAmmount(ammount + 1)} className='bi bi-chevron-up'></i>
                         </div>
                         <button>Add To Cart</button>
                     </div>
@@ -79,9 +80,9 @@ const Product = (articles) => {
                 </div>
             </div>
             <Billboard billboardTitle='All your favorite Zimbabwean products' callToAction='Shop Now'>
-      <img id='billboardCerevita' className='jumbotron-image' src={currentProduct[0].image}/>
+            <img id='billboardImageMultiProduct' className='jumbotron-image' src="/img/billboard_image.png"/>    
       </Billboard>
-      <ProductCardSection/>
+      <ProductCardSection title='Recently Viewed Items' linkTitle='-Recently Viewed Items'/>
         </div>
 
 

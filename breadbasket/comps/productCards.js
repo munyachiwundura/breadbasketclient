@@ -5,12 +5,14 @@ const ProductCardSection = (props) => {
     <div className='product-card-section'>
         <div className='section-scroll-and-title'> 
        <SectionTitle title={props.title} linkTitle={props.linkTitle}/>
-       <SectionScroll />
+      
        </div>
        <div className='product-cards-container'>
          <ProductCard category='Drinks' price='15' title='Pfuko Maheu Original' image="/img/pfuko_maheu_original.png" />
          <ProductCard category='Cereals' price='60' title='Cerevita Cocoa & Malt' image="/img/cerevita_choco_and_malt.png"/>
          <ProductCard category='Drinks' price='50' title='Mazoe Orange Crush' image="/img/mazoe_orange.png"/>
+         <ProductCard category='Sauces' price='30' title='RabRoy Tomatoe Sauce' image="/img/rabroy_tomatoe_sauce.png"/>
+         <ProductCard category='Sauces' price='30' title='RabRoy Tomatoe Sauce' image="/img/rabroy_tomatoe_sauce.png"/>
          <ProductCard category='Sauces' price='30' title='RabRoy Tomatoe Sauce' image="/img/rabroy_tomatoe_sauce.png"/>
        </div>
     </div>
@@ -48,14 +50,7 @@ const SectionTitle = (props) => {
    );
 }
 
-const SectionScroll = () => {
-  return ( 
-    <div className='section-scroll-container'>
-      <button className="circular-button"><i className='bi bi-chevron-left'></i></button>
-      <button className="circular-button"><i className='bi bi-chevron-right'></i></button>
-    </div>
-   );
-}
+
 
 
 

@@ -15,11 +15,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
      <Billboard billboardTitle='All your favorite Zimbabwean products' callToAction='Shop Now'>
-                <img id='billboardCerevita' className='jumbotron-image' src="/img/cerevita_choco_and_malt.png"/>
-                <img id='billboardMazoe' className='jumbotron-image' src="/img/mazoe_orange.png"/>
-                <img id='billboardPfuko' className='jumbotron-image' src="/img/pfuko_maheu_original.png"/>
-                <img id='billboardLyons' className='jumbotron-image' src="/img/lyons_peanut_butter_small.png"/>
-                <img id='billboardRabroy' className='jumbotron-image' src="/img/rabroy_tomatoe_sauce.png"/>
+                <img id='billboardImageMultiProduct' className='jumbotron-image' src="/img/billboard_image.png"/>    
       </Billboard>
       <CategoryCardSection/>
       <ProductCardSection title='Explore our Top Selling Products' linkTitle='-Top Selling Products'/>

@@ -96,7 +96,7 @@
 
 .product-image-shadow {
   position: relative;
-  top: 400px;
+  top: 450px;
   width: 300px;
   height: 5px;
   border-radius: 50%;
@@ -108,27 +108,43 @@
 .product-image p {
   position: absolute;
   z-index: 3;
-  top: 250px;
-  right: 75px;
+  bottom: 30%;
+  left: 85%;
   transition: top 0.7s ease;
   font-size: 46px;
-  color: white;
+  color: #ffffff;
+  background-color: var(--primary);
+  border-radius: 50%;
+  height: 60px;
+  width: 60px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #productImageTwo {
-  left: 90px;
+  left: 30%;
   height: 350px;
   top: 90px;
   z-index: 2;
 }
 
 #productImageThree {
-  left: 185px;
+  left: 50%;
+  height: 300px;
+  top: 130px;
+  z-index: 1;
+}
+
+#productImageThreeDark {
+  left: 50%;
   height: 300px;
   top: 130px;
   z-index: 1;
   filter: brightness(0);
 }
+
 .product-image:hover > #prductImageTwo {
   top: 0px;
 }
