@@ -124,7 +124,7 @@ const SlideshowThumbnail = (props) => {
 
 
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
     const res = await fetch('http://localhost:3000/products.json/');
      const articles = await res.json();
      return{
@@ -132,6 +132,21 @@ export async function getServerSideProps(context) {
                      articles
                 }
             }
+}
+
+export async function getStaticPaths() {
+    const res = await fetch('http://localhost:3000/products.json/');
+    const articles = await res.json();
+
+    const paths = articles.map(article => {
+        return {params: {id: article.name}}
+        console.log(article)
+    })
+
+    return {
+        paths,
+        fallback: false
+    }
 }
 
 
