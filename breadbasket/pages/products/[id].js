@@ -1,10 +1,9 @@
 import {useRouter}  from 'next/router'
 import Head from 'next/head'
-import productStyles from '../../styles/products.module.css'
 import Billboard from '../../comps/billboard';
 import ProductCardSection from '../../comps/productCards';
-import Image from 'next/image'
 import { useState } from 'react';
+import { motion } from "framer-motion";
 
 
 const Product = (articles) => {
@@ -33,16 +32,35 @@ const Product = (articles) => {
                     </div>
                     <div className='product-image'>
                         <img src={currentProduct[0].image}></img>
-                        {ammount > 1 && <img id='productImageTwo' src={currentProduct[0].image}></img>}
-                        {ammount > 2 && <img id={ammount > 3 ? 'productImageThreeDark' : 'productImageThree'} src={currentProduct[0].image}></img>}
+                        {ammount > 1 && <motion.div initial='hidden' exit='hidden' animate='visible' variants={{
+            hidden: {
+              x: 300,
+            },
+            visible: {
+              x: 0,
+              transition: {duration: .3}
+            },
+            }}>
+<img id='productImageTwo' src={currentProduct[0].image}></img></motion.div>}
+                        {ammount > 2 && <motion.div initial='hidden' exit='hidden' animate='visible' variants={{
+            hidden: {
+              x: 300,
+            },
+            visible: {
+              x: 0,
+              transition: {duration: .3}
+            },
+            }}><img id={ammount > 3 ? 'productImageThreeDark' : 'productImageThree'} src={currentProduct[0].image}></img></motion.div>}
                         {ammount > 3 && <p> {ammount} </p>}
                 <div className='product-image-shadow'></div>
 
                     </div>
                 </div>
                 <div className='product-actions'>
+                    <div className='section-title-container'>
                     <a>-Top Selling</a>
-                    <h1>{id} </h1>
+                    <p>{id}</p>
+                    </div>
                     <div className='product-page-category-and-price'>
                         <button>Drinks</button>
                         <p>R50</p>
@@ -53,18 +71,22 @@ const Product = (articles) => {
                             <p>{ammount}</p>
                             <i onClick={() => setAmmount(ammount + 1)} className='bi bi-chevron-up'></i>
                         </div>
-                        <button>Add To Cart</button>
+                        <button className='primary-button'>Add To Cart</button>
                     </div>
                 </div>
             </div>
             <div className='product-information-and-description'>
                 <div className='product-description'>
+                <div className='section-title-container'>
                     <a>-About Product</a>
-                    <h1>Description</h1>
-<p>{currentProduct[0].description} </p>
+                    <p>Description</p>
+                    </div>
+<p className='product-description-text'>{currentProduct[0].description} </p>
                 </div>
                 <div className='product-information'>
-                    <h1>Product Information</h1>
+                <div className='section-title-container'>
+                    <p>Product Information</p>
+                    </div>
                     <div className='product-information-card'>
 <h2>Product brand</h2>
 <p>Schewppes</p>
