@@ -8,6 +8,8 @@ import '../styles/cart.css'
 import '../styles/search.css'
 import '../styles/login.css'
 import '../styles/checkout.css'
+import '../styles/categories.css'
+
 
 
 

@@ -9,14 +9,15 @@ import { motion } from "framer-motion";
 const Product = (articles) => {
     const router = useRouter()
     const{id} = router.query
-    const currentProduct = articles.articles.filter(x => {return x.id == id})
+    console.log(articles)
+    const currentProduct = articles.articles.filter(x => {return x.title == id})
   const [ammount, setAmmount] = useState (1)
     return ( 
     <div>
         <Head>
         
             <title>
-                { currentProduct[0].name }
+                { currentProduct[0].title }
             </title>
         </Head>
 <div className='product-page'>
@@ -26,12 +27,12 @@ const Product = (articles) => {
             <div className='product-slideshow-and-actions-container'>
                 <div className='product-slideshow'>
                     <div className='product-image-thumbnails'>
-                        <SlideshowThumbnail thumbanailsrc={currentProduct[0].image}/>
+                        <SlideshowThumbnail thumbanailsrc={currentProduct[0].images[0].original}/>
                         <SlideshowThumbnail thumbanailsrc={currentProduct[0].image}/>
                         <SlideshowThumbnail thumbanailsrc={currentProduct[0].image}/>
                     </div>
                     <div className='product-image'>
-                        <img src={currentProduct[0].image}></img>
+                        <img src={currentProduct[0].images[0].original}></img>
                         {ammount > 1 && <motion.div initial='hidden' exit='hidden' animate='visible' variants={{
             hidden: {
               x: 300,
@@ -41,7 +42,7 @@ const Product = (articles) => {
               transition: {duration: .3}
             },
             }}>
-<img id='productImageTwo' src={currentProduct[0].image}></img></motion.div>}
+<img id='productImageTwo' src={currentProduct[0].images[0].original}></img></motion.div>}
                         {ammount > 2 && <motion.div initial='hidden' exit='hidden' animate='visible' variants={{
             hidden: {
               x: 300,
@@ -50,7 +51,7 @@ const Product = (articles) => {
               x: 0,
               transition: {duration: .3}
             },
-            }}><img id={ammount > 3 ? 'productImageThreeDark' : 'productImageThree'} src={currentProduct[0].image}></img></motion.div>}
+            }}><img id={ammount > 3 ? 'productImageThreeDark' : 'productImageThree'} src={currentProduct[0].images[0].original}></img></motion.div>}
                         {ammount > 3 && <p> {ammount} </p>}
                 <div className='product-image-shadow'></div>
 
@@ -125,7 +126,7 @@ const SlideshowThumbnail = (props) => {
 
 
 export async function getStaticProps(context) {
-    const res = await fetch('http://localhost:3000/products.json/');
+    const res = await fetch('https://the-bread-basket.herokuapp.com/api/products/');
      const articles = await res.json();
      return{
                  props: {
@@ -135,11 +136,11 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
-    const res = await fetch('http://localhost:3000/products.json/');
+    const res = await fetch('https://the-bread-basket.herokuapp.com/api/products/');
     const articles = await res.json();
 
     const paths = articles.map(article => {
-        return {params: {id: article.name}}
+        return {params: {id: article.title}}
         console.log(article)
     })
 

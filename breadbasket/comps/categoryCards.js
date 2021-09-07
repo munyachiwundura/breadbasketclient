@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { motion, transform } from "framer-motion";
+import Link from 'next/link'
+
+
 
 const CategoryCardSection = () => {
   const [currentSelection, setCurrentSelection] = useState(0)
@@ -23,10 +26,12 @@ export default CategoryCardSection;
 
 const CategoryCard = (props) => {
     return ( 
+      <Link  href={'/categories/' + props.title }>
       <div className='category-card'>
   {props.icon}
         <p className='category-card-text'>{props.title}</p>
       </div>
+      </Link>
      );
   }
 

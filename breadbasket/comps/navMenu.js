@@ -1,5 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import React, { useState } from 'react';
+import Link from 'next/link'
+
 
 const NavigationMenu = () => {
 
