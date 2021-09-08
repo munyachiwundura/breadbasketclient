@@ -15,7 +15,7 @@ export default function Home() {
         <link rel="icon" href="/icons/breadbasketlogo.svg" />
         <meta property="og:title" content="The Bread Basket"/>
         <meta name="description" content="All your favorite Zimbabwean Products" />
-        <meta property="og:image" content="/img/billboard_image.png"/>
+        <meta property="og:image" content="https://thebreadbasket.herokuapp.com/img/billboard_image.png"/>
         <meta property="og:url" content="https://thebreadbasket.herokuapp.com"/>
       </Head>
       <body>

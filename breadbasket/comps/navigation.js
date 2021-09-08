@@ -33,7 +33,7 @@ const Navigation = () => {
                               </div>}
 
                               <nav className='nav'>
-                                          <Link href="/">
+                                          <Link href="https://thebreadbasket.herokuapp.com">
                                             <div className='navlogo'>
                                                 <LogoSvg/>
                                                 <a className='logo-type'>Bread Basket</a>
