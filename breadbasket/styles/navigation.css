@@ -11,7 +11,6 @@
   display: flex;
   align-items: center;
   position: relative;
-  top: -16px;
   font-size: 36px;
   cursor: pointer;
 }
@@ -26,10 +25,11 @@
   align-items: center;
 }
 #nav-icon {
+  z-index: 999;
   width: 25px;
   height: 25px;
-
   position: relative;
+  top: 5px;
   margin-right: 10px;
   -webkit-transform: rotate(0deg);
   -moz-transform: rotate(0deg);
@@ -109,6 +109,7 @@
   border-radius: 20px;
   overflow: hidden;
   padding: 10px;
+  height: auto;
   transition: height 1.5s ease;
   z-index: 99;
   box-shadow: 0px 19px 38px rgba(0, 0, 0, 0.4), 0 0 2px 0 rgba(0, 0, 0, 0.3);
@@ -179,7 +180,7 @@
   position: fixed;
   right: 0;
   width: 400px;
-  height: 100%;
+  height: 100vh;
   background-color: #ffffff;
   z-index: 99;
   padding: 25px;
@@ -206,13 +207,39 @@
 }
 
 @media only screen and (max-width: 700px) {
+  .navlogo {
+    display: flex;
+    font-size: 32px;
+    width: 55%;
+    cursor: pointer;
+    align-items: center;
+  }
   #searchboxLogo {
     font-size: 40px;
   }
-  .searchbox {
-    width: 200px;
+  .menu-dropdown {
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+    padding: 20% 20% 20% 20%;
+    top: 0;
   }
-  .search-input {
-    width: 120px;
+
+  .nav-item {
+    padding: 0;
+  }
+  .logo-type {
+    display: none;
+  }
+  .side-menu {
+    position: fixed;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #ffffff;
+    z-index: 99;
+    padding: 25px;
+    box-shadow: 0px 19px 38px rgba(0, 0, 0, 0.4), 0 0 2px 0 rgba(0, 0, 0, 0.3);
   }
 }

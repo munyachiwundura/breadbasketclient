@@ -7,9 +7,10 @@ import { motion } from "framer-motion";
 
 
 const Product = (articles) => {
+    const data = fetch(articles.articles.stockrecords);
     const router = useRouter()
     const{id} = router.query
-    console.log(articles)
+    console.log(data)
     const currentProduct = articles.articles.filter(x => {return x.title == id})
   const [ammount, setAmmount] = useState (1)
     return ( 
@@ -19,6 +20,12 @@ const Product = (articles) => {
             <title>
                 { currentProduct[0].title }
             </title>
+            <title>The Bread Basket</title>
+        <meta name="description" content={currentProduct[0].description} />
+        <link rel="icon" href="/icons/breadbasketlogo.svg" />
+        <meta property="og:title" content={id}/>
+        <meta name="description" content={currentProduct[0].description} />
+        <meta property="og:image" content={currentProduct[0].images[0].original}/>
         </Head>
 <div className='product-page'>
             <div className='breadcrumbs'>
@@ -28,8 +35,8 @@ const Product = (articles) => {
                 <div className='product-slideshow'>
                     <div className='product-image-thumbnails'>
                         <SlideshowThumbnail thumbanailsrc={currentProduct[0].images[0].original}/>
-                        <SlideshowThumbnail thumbanailsrc={currentProduct[0].image}/>
-                        <SlideshowThumbnail thumbanailsrc={currentProduct[0].image}/>
+                        <SlideshowThumbnail thumbanailsrc={currentProduct[0].images[0].original}/>
+                        <SlideshowThumbnail thumbanailsrc={currentProduct[0].images[0].original}/>
                     </div>
                     <div className='product-image'>
                         <img src={currentProduct[0].images[0].original}></img>
@@ -127,7 +134,9 @@ const SlideshowThumbnail = (props) => {
 
 export async function getStaticProps(context) {
     const res = await fetch('https://the-bread-basket.herokuapp.com/api/products/');
-     const articles = await res.json();
+    const articles = await res.json();
+    
+        
      return{
                  props: {
                      articles
@@ -138,10 +147,11 @@ export async function getStaticProps(context) {
 export async function getStaticPaths() {
     const res = await fetch('https://the-bread-basket.herokuapp.com/api/products/');
     const articles = await res.json();
+    
 
     const paths = articles.map(article => {
         return {params: {id: article.title}}
-        console.log(article)
+
     })
 
     return {

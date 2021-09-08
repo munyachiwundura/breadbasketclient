@@ -8,7 +8,8 @@ const Products = (products) => {
     const router = useRouter()
     const{id} = router.query
    const items = products.products
-   const currentItems = id !== 'All'? items.filter(item => item.categories[0] === id ) : items; 
+   console.log(items.map(x => x.title))
+   const currentItems = id !== 'All Categories'? items.filter(item => item.categories[0] === id ) : items; 
    console.log(id)
    console.log(items)
    console.log(currentItems)
@@ -19,6 +20,13 @@ const Products = (products) => {
             <title>
                 { id }
             </title>
+            <title>The Bread Basket</title>
+        <meta name="description" content="All your favorite Zimbabwean Products" />
+        <link rel="icon" href="/icons/breadbasketlogo.svg" />
+        <meta property="og:title" content={ id }/>
+        <meta name="description" content={"Browse our selection of " + { id }} />
+        <meta property="og:image" content="/img/billboard_image.png"/>
+        <meta property="og:url" content="https://thebreadbasket.herokuapp.com"/>
         </Head>
         <div>
         <div className='section-title-container'>

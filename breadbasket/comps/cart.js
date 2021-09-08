@@ -9,7 +9,7 @@ const Cart = () => {
             <i className='bi bi-cart'></i>
             <p>My Cart</p>  
      </div>
-        <div>
+        <div className='cart-products-container'>
             <div className='cart-products'>
                 <CartProduct title='Cerevita Cocoa and Malt' price='R50' image='/img/cerevita_choco_and_malt.png'/>
                 <CartProduct title='Cerevita Cocoa and Malt' price='R50' image='/img/cerevita_choco_and_malt.png'/>
@@ -59,4 +59,4 @@ const CartProduct = (props) => {
     </motion.div> );
 }
 
-export default {Cart, CartProduct};
+export default Cart;
