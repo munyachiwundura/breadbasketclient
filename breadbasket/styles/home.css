@@ -112,7 +112,7 @@
   flex-wrap: nowrap;
   justify-content: flex-start;
   height: 250px;
-  overflow: scroll;
+  overflow: hidden;
   transition: all ease-in-out 0.5s;
 }
 
