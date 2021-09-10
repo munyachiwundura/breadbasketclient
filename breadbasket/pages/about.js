@@ -1,7 +1,12 @@
+import Rive from 'rive-react';
+import styles from "../styles/about.module.css"
+
+
 const About = () => {
-    return ( <h1>
+    return ( <div><Rive src="breadbasketlogo.riv"/><h1>
         Hie Mom
-    </h1> );
+        
+    </h1></div> );
 }
  
 export default About;

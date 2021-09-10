@@ -1,0 +1,18 @@
+.blogs_container {
+  width: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+}
+
+.title_container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+@media only screen and (max-width: 600px) {
+  .blogs_container {
+    align-content: center;
+    justify-content: center;
+  }
+}

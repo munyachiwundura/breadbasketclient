@@ -1,22 +1,5 @@
 import Link from 'next/link'
 
-const ProductCardSection = (props) => {
-  return ( 
-    <div className='product-card-section'>
-        <div className='section-scroll-and-title'> 
-       <SectionTitle title={props.title} linkTitle={props.linkTitle}/>
-      
-       </div>
-       <div className='product-cards-container'>
-         {props.children}
-       </div>
-    </div>
-   );
-}
-
-export default ProductCardSection;
-
-
 const ProductCard = (props) => {
     return ( <Link href={'/products/' + props.title }>
         <div className='product-card'>
@@ -35,17 +18,5 @@ const ProductCard = (props) => {
     </Link>
      );
 }
- 
-const SectionTitle = (props) => {
-  return ( 
-    <div className='section-title-container'>
-      <a className='section-link'>{props.linkTitle}</a>
-      <p className='section-title'>{props.title}</p>
-    </div>
-   );
-}
 
-
-
-
-
+export default ProductCard;

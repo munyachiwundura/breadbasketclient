@@ -30,15 +30,17 @@ a {
 }
 
 .section-title-container {
+  height: fit-content;
 }
 
 .section-title-container p {
-  font-size: 36px;
+  font-size: 48px;
   margin-top: 12px;
   margin-bottom: 0;
-  height: 38px;
   display: flex;
   align-items: center;
+  font-family: "Bebas Neue", cursive;
+  line-height: 52px;
 }
 
 .section-title-container a {
@@ -49,6 +51,7 @@ a {
 /* refactor below styles */
 .section-title {
   font-size: 36px;
+  font-family: "Bebas Neue", cursive;
 }
 
 .section-link {

@@ -75,6 +75,10 @@
   cursor: pointer;
 }
 
+.footer-links ul {
+  padding: 0;
+}
+
 .footer-links ul li {
   font-size: 24px;
   cursor: pointer;
