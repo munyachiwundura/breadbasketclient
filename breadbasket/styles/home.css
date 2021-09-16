@@ -34,9 +34,10 @@
 .jumbotron-text {
   width: 100%;
   position: relative;
-  font-size: 36px;
-  line-height: 42px;
+  font-size: 64px;
+  line-height: 64px;
   margin-bottom: 42px;
+  font-family: "Bebas Neue", cursive;
 }
 
 .jumbotron-image {
@@ -278,8 +279,8 @@
   .jumbotron-text {
     text-align: center;
     margin-top: 0;
-    font-size: 24px;
-    line-height: 29px;
+    font-size: 36px;
+    line-height: 36px;
   }
   .jumbotron-image-container {
     order: 1;

@@ -24,7 +24,7 @@ const BlogPostPage = (articles) => {
                 <div className={styles.cover_container}>
                 <img className={styles.cover} src={"https://the-bread-basket.herokuapp.com" +currentArticle.Cover}/>
                 </div>
-            <p>{currentArticle.Paragraph}</p>
+           <div dangerouslySetInnerHTML={{__html: currentArticle.Paragraph}} ></div>
            
         </div>
         <div className={styles.right_column}>

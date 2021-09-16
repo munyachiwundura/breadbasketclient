@@ -17,6 +17,8 @@
 
 .logo-type {
   margin-left: 10px;
+  font-family: "Bebas Neue", cursive;
+  color: var(--primary);
 }
 /* nav menu dropdown toggler */
 

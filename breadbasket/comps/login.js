@@ -1,10 +1,34 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
 const Login = () => {
     const [login, selectLogin] = useState(true)
-    const [password, showPassword] = useState(true)
+    const [revealPassword, showPassword] = useState(true)
+    const [username, setUsername] = useState("")
+    const [password, setPassword] = useState("")
+
+
+    const login_api = async (props) => {
+        const res = await fetch('https://the-bread-basket.herokuapp.com/api/login/', {
+        method: 'POST',
+        body: JSON.stringify({
+           username : username,
+           password : password
+        }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+    
+    
+    const data = await res.json();
+    console.log(data)
+    localStorage.setItem('Token', data)
+    return(data)
+    }
+    
+
     return ( 
         
     <motion.div className='side-menu' 
@@ -45,15 +69,15 @@ const Login = () => {
             <div className='login-inputs'>
    
                 <div>
-                    <input type='email' placeholder='Email address or phone number'/>
+                    <input type='email' placeholder='Email address or phone number' onChange={(e) => setUsername(e.target.value)}/>
                 </div>
                 <div>
-                    <input type={password? 'password': 'text'} placeholder='Password'/>
-                    <i className={password? 'bi bi-eye-slash' : 'bi bi-eye'} onClick={()=> showPassword(!password)}></i>
+                    <input onChange={(e) => setPassword(e.target.value)} type={revealPassword? 'password': 'text'} placeholder='Password'/>
+                    <i className={revealPassword? 'bi bi-eye-slash' : 'bi bi-eye'} onClick={()=> showPassword(!revealPassword)}></i>
                 </div>
             </div>
             <div className='login-button'>
-                <button className='primary-button'>Sign In</button>
+                <button className='primary-button' onClick={() => login_api()}>Sign In</button>
             </div>
             <div className='forgot-password'>
                 <p>Have you forgotten your password?</p>
@@ -76,8 +100,8 @@ initial='hidden' exit='hidden' animate='visible' variants={{
                     <input type='email' placeholder='Full Name'/>
                 </div>
                 <div>
-                    <input type={password? 'password': 'text'} placeholder='Password'/>
-                    <i className={password? 'bi bi-eye-slash' : 'bi bi-eye'} onClick={()=> showPassword(!password)}></i>
+                    <input type={revealPassword? 'password': 'text'} placeholder='Password'/>
+                    <i className={revealPassword? 'bi bi-eye-slash' : 'bi bi-eye'} onClick={()=> showPassword(!revealPassword)}></i>
                 </div>
                 <div>
                     <input type='email' placeholder='Capcha'/>
@@ -87,7 +111,7 @@ initial='hidden' exit='hidden' animate='visible' variants={{
             <div className='terms-checkbox'><input type='checkbox'/><p>Agree to our terms and conditions</p></div>
             <div className='register-button'>
                 
-                <button className='primary-button'>Register</button>
+                <button onClick={() => login_api()} className='primary-button'>Register</button>
             </div>
           </motion.div>}
         </div>

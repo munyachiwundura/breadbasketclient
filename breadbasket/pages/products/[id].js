@@ -7,11 +7,21 @@ import { motion } from "framer-motion";
 
 
 const Product = (articles) => {
-    const data = fetch(articles.articles.stockrecords);
+    
+    
     const router = useRouter()
     const{id} = router.query
-    console.log(data)
+    
     const currentProduct = articles.articles.filter(x => {return x.title == id})
+    console.log(currentProduct[0].stockrecords)
+
+    const getStockRecords = async (currentProduct) => {
+        const data = fetch(currentProduct[0].stockrecords);
+        // const data = await res.json();
+        console.log(data)
+    return(data)
+    }
+    getStockRecords(currentProduct)
   const [ammount, setAmmount] = useState (1)
     return ( 
     <div>
