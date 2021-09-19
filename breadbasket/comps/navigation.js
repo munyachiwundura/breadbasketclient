@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link'
 import { motion } from 'framer-motion';
 import Cart from './cart';
@@ -12,7 +12,27 @@ const Navigation = () => {
     const [searching, activateSearching] = useState(false);
     const [cartOpen, openCart] = useState(false)
     const [loginOpen, openLogin] = useState(false)
-         
+    const [signedIn, setSignIn] = useState(false)
+    
+    function checkAuth(){
+      var auth = localStorage.getItem("Login")
+      setSignIn(auth)
+    }
+    
+    function profilePage() {
+      signedIn? logOut() : openLogin(!loginOpen)
+    }
+
+    function logOut() {
+      alert("youre signed in")
+      localStorage.removeItem('Token')
+      localStorage.removeItem('Login')
+      location.reload();
+    }
+    
+    useEffect(() => checkAuth(), [loginOpen])
+    
+
     return ( <div>
 
                 {searching && <div>
@@ -54,7 +74,7 @@ const Navigation = () => {
                                           </div>
                                           <ul className='nav-item icons'>
                                               <ListItem icon='bi bi-search' event={()=> activateSearching(!searching)}/>
-                                              <ListItem icon='bi bi-person' event={()=> openLogin(!loginOpen)}/>
+                                              <ListItem icon={signedIn? 'bi bi-person-fill': 'bi bi-person'} event={()=> profilePage()}/>
                                               <ListItem icon='bi bi-heart'/>
                                               <ListItem icon='bi bi-cart' event={()=> openCart(!cartOpen)}/>
                                           </ul>

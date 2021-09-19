@@ -3,11 +3,10 @@ import Link from "next/link";
 import {  useEffect, useState } from "react";
 
 const Cart = () => {
-    console.log("tapinda")
-    var token = localStorage.getItem("Token")
+    const token = localStorage.getItem("Token")
     
-    var [cartData, setCartData] = useState("")
-    var [cartProducts, setCartProducts] = useState([{url: 'loading'}])
+    const [cartData, setCartData] = useState("")
+    const [lines, setCartLines] = useState("")
 
     const cartApi = async () => {
         const res = await fetch('https://the-bread-basket.herokuapp.com/api/basket/', {
@@ -19,20 +18,9 @@ const Cart = () => {
     });
     const data = await res.json();
     console.log("the lines", data.lines)
-    
-    const response = await fetch(data.lines, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': "Token " + token
-        }
-    });
-    const dat = await response.json();
-
-    console.log("between the lines" ,dat)
-    setCartProducts(dat)
+    setCartLines(data.lines)
     setCartData(data)
-    console.log( "state of mind", cartData, cartProducts)
+   
 }
 
 useEffect(() => {cartApi()},[])
@@ -49,9 +37,9 @@ useEffect(() => {cartApi()},[])
             <p>My Cart</p>  
      </div>
         <div className='cart-products-container'>
-            <div className='cart-products'>
-                {cartProducts.map(x => <CartProduct url={x.url} title='Cerevita Cocoa and Malt' price='R50' image='/img/cerevita_choco_and_malt.png'/>)}     
-            </div>
+            
+<CartLines lines={lines}/>
+
             <div className='cart-totals'>
 
             <div>
@@ -78,6 +66,36 @@ useEffect(() => {cartApi()},[])
     </motion.div>
     
     
+     );
+}
+
+const CartLines = (props) => {
+    const token = localStorage.getItem("Token")
+    const [cartProducts, setCartProducts] = useState([{url: 'loading'}])
+    const cartLinesApi = async () => {
+       
+    
+    const response = await fetch(props.lines, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': "Token " + token
+        }
+    });
+    const dat = await response.json();
+
+    console.log("between the lines" ,dat)
+    setCartProducts(dat)
+    console.log( "state of mind", cartData, cartProducts)
+}
+
+useEffect(() => {cartLinesApi()},[])
+
+    
+    return ( 
+<div className='cart-products'>
+                {cartProducts.map(x => <CartProduct url={x.url} title='Cerevita Cocoa and Malt' price='R50' image='/img/cerevita_choco_and_malt.png'/>)}     
+</div>
      );
 }
  

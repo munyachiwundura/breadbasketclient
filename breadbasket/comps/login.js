@@ -7,6 +7,8 @@ const Login = () => {
     const [revealPassword, showPassword] = useState(true)
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+    const [registerUsername, setRegisterUsername] = useState("")
+    const [registerPassword, setRegisterPassword] = useState("")
 
 
     const login_api = async (props) => {
@@ -19,15 +21,41 @@ const Login = () => {
         headers: {
             'Content-Type': 'application/json'
         }
+
     });
     
     
     const data = await res.json();
     console.log(data)
     localStorage.setItem('Token', data)
+    localStorage.setItem('Login', true)
+    alert("youre signed in")
+    location.reload();
     return(data)
     }
     
+    const register_api = async (props) => {
+        const res = await fetch('https://the-bread-basket.herokuapp.com/api/register/', {
+        method: 'POST',
+        body: JSON.stringify({
+           email : registerUsername,
+           password1 : registerPassword,
+           password2 : registerPassword
+        }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+    
+    
+    const data = await res.json();
+    console.log(data)
+    localStorage.setItem('Token', data)
+    localStorage.setItem('Login', true)
+    alert("user added", data)
+    location.reload();
+    return(data)
+    }
 
     return ( 
         
@@ -97,10 +125,10 @@ initial='hidden' exit='hidden' animate='visible' variants={{
 >
             <div className='login-inputs'>
                 <div>
-                    <input type='email' placeholder='Full Name'/>
+                    <input onChange={(e) => setRegisterUsername(e.target.value)} type='email' placeholder='Full Name'/>
                 </div>
                 <div>
-                    <input type={revealPassword? 'password': 'text'} placeholder='Password'/>
+                    <input onChange={(e) => setRegisterPassword(e.target.value)} type={revealPassword? 'password': 'text'} placeholder='Password'/>
                     <i className={revealPassword? 'bi bi-eye-slash' : 'bi bi-eye'} onClick={()=> showPassword(!revealPassword)}></i>
                 </div>
                 <div>
@@ -111,7 +139,7 @@ initial='hidden' exit='hidden' animate='visible' variants={{
             <div className='terms-checkbox'><input type='checkbox'/><p>Agree to our terms and conditions</p></div>
             <div className='register-button'>
                 
-                <button onClick={() => login_api()} className='primary-button'>Register</button>
+                <button onClick={() => register_api()} className='primary-button'>Register</button>
             </div>
           </motion.div>}
         </div>
