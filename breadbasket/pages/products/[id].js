@@ -2,27 +2,64 @@ import {useRouter}  from 'next/router'
 import Head from 'next/head'
 import Billboard from '../../comps/billboard';
 import ProductCardSection from '../../comps/productCards';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from "framer-motion";
 
 
-const Product = (articles) => {
+const Product = (props) => {
     
+    const [token, setToken] = useState ("")
+    const [ammount, setAmmount] = useState (1)
+    const [prices, setPrices] = useState ("")
+    const [addToCart, setAddToCart] = useState ("Add To Cart")
     
+    console.log(props.articles)
     const router = useRouter()
     const{id} = router.query
+    const currentProduct = props.articles.filter(x => {return x.title == id})
+    console.log(currentProduct[0])
     
-    const currentProduct = articles.articles.filter(x => {return x.title == id})
-    console.log(currentProduct[0].stockrecords)
+    const GetPrices = async () => {
+        const response = await fetch(currentProduct[0].stockrecords)
+        const data = await response.json();
 
-    const getStockRecords = async (currentProduct) => {
-        const data = fetch(currentProduct[0].stockrecords);
-        // const data = await res.json();
-        console.log(data)
-    return(data)
+        const res = await fetch(data[0].url)
+        const dat = await res.json()
+
+        console.log("the prices", data)
+        console.log("the prices", dat)
+        
+        setPrices(dat)
     }
-    getStockRecords(currentProduct)
-  const [ammount, setAmmount] = useState (1)
+
+    useEffect(() => {
+        setToken(localStorage.getItem("Token"))
+        GetPrices()
+}, [])
+
+
+    const AddItem = async () => {
+        setAddToCart("Adding Item!")
+        const response = await fetch('https://the-bread-basket.herokuapp.com/api/basket/add-product/', {
+            method: 'POST',
+            body: JSON.stringify({
+                url : currentProduct[0].url,
+               quantity : ammount
+            }),
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': "Token " + token
+            }
+            
+        }); 
+        alert(ammount + " " + currentProduct[0].title + " " + "was added")
+        setAmmount(1)
+        setAddToCart("Item Added")
+        setAddToCart("Add To Cart")
+
+    }
+  
+
     return ( 
     <div>
         <Head>
@@ -81,15 +118,15 @@ const Product = (articles) => {
                     </div>
                     <div className='product-page-category-and-price'>
                         <button>Drinks</button>
-                        <p>R50</p>
+                        <p>R {prices.price}</p>
                     </div>
                     <div className='quantity-and-add-to-cart'>
                         <div className='quantity-selector'>
                             <i onClick={() => setAmmount(ammount > 1 ? ammount - 1 : ammount)} className='bi bi-chevron-down'></i>
                             <p>{ammount}</p>
-                            <i onClick={() => setAmmount(ammount + 1)} className='bi bi-chevron-up'></i>
+                            <i onClick={() => setAmmount(ammount < prices.num_in_stock ? ammount + 1 : ammount)} className='bi bi-chevron-up'></i>
                         </div>
-                        <button className='primary-button'>Add To Cart</button>
+                        <button className='primary-button' onClick={() => AddItem()}>{addToCart}</button>
                     </div>
                 </div>
             </div>

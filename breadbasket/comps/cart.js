@@ -1,12 +1,16 @@
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import {  useEffect, useState } from "react";
+import Rive from 'rive-react';
+
 
 const Cart = () => {
+
     const token = localStorage.getItem("Token")
-    
+    const [cartLoading, setCartLoading] = useState(true)
     const [cartData, setCartData] = useState("")
     const [lines, setCartLines] = useState("")
+    
 
     const cartApi = async () => {
         const res = await fetch('https://the-bread-basket.herokuapp.com/api/basket/', {
@@ -16,18 +20,20 @@ const Cart = () => {
             'Authorization': "Token " + token
         }
     });
+
     const data = await res.json();
-    console.log("the lines", data.lines)
-    setCartLines(data.lines)
+
+    console.log("funny json response", res)
+    console.log("the cart", data)
+    console.log("the lines link", data.lines)
+
     setCartData(data)
+    setCartLines(data.lines)
+    setCartLoading(false)
    
 }
 
 useEffect(() => {cartApi()},[])
-
-
-    
-    
 
     return ( 
 
@@ -38,7 +44,8 @@ useEffect(() => {cartApi()},[])
      </div>
         <div className='cart-products-container'>
             
-<CartLines lines={lines}/>
+{cartLoading?  <Rive src="breadbasketlogo.riv"/> : <CartLines lines={lines}/>}
+
 
             <div className='cart-totals'>
 
@@ -72,8 +79,8 @@ useEffect(() => {cartApi()},[])
 const CartLines = (props) => {
     const token = localStorage.getItem("Token")
     const [cartProducts, setCartProducts] = useState([{url: 'loading'}])
+    const [cartProductsLoaded, setCartProductsLoaded] = useState(false)
     const cartLinesApi = async () => {
-       
     
     const response = await fetch(props.lines, {
         method: 'GET',
@@ -82,11 +89,12 @@ const CartLines = (props) => {
             'Authorization': "Token " + token
         }
     });
-    const dat = await response.json();
 
-    console.log("between the lines" ,dat)
-    setCartProducts(dat)
-    console.log( "state of mind", cartData, cartProducts)
+    const dat = await response.json()
+    const prods = await setCartProducts(dat)
+    console.log(dat)
+    console.log(cartProducts)
+    {cartProducts.length > 0 && setCartProductsLoaded(true), 1000}
 }
 
 useEffect(() => {cartLinesApi()},[])
@@ -94,7 +102,9 @@ useEffect(() => {cartLinesApi()},[])
     
     return ( 
 <div className='cart-products'>
-                {cartProducts.map(x => <CartProduct url={x.url} title='Cerevita Cocoa and Malt' price='R50' image='/img/cerevita_choco_and_malt.png'/>)}     
+
+               {cartProductsLoaded?  cartProducts.map(x => <CartProduct link={x.url} url={x.product} quantity={x.quantity} title='Cerevita Cocoa and Malt' price={x.price_incl_tax}/>) :  <Rive src="breadbasketlogo.riv"/> }    
+
 </div>
      );
 }
@@ -102,10 +112,25 @@ useEffect(() => {cartLinesApi()},[])
 
 const CartProduct = (props) => {
     const url = props.url
+    const link = props.link
     const token = localStorage.getItem("Token")
     
-    const [productInfo, setProductInfo] = useState("")
     const [productDetail, setProductDetail] = useState("")
+    const [displayItem, setDisplayItem] = useState(true)
+
+
+    const DeleteItem = async () => {
+        const res = await fetch(link, {
+            method: 'Delete',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': "Token " + token
+            }
+
+        }); 
+        console.log(link, "was deleted")
+        setDisplayItem(false)
+    }
 
     const Products_api = async () => {
         const res = await fetch(url, {
@@ -117,29 +142,38 @@ const CartProduct = (props) => {
     }); 
 
     const data = await res.json();
-    const response = await fetch(data.product)
-    const detail = await response.json();
 
-    console.log("product details",data, detail)
-    setProductInfo(data)
-    setProductDetail(detail)
+    console.log("product details",data)
+    setProductDetail(data)
     }
     
     useEffect(() => {Products_api()},[])
 
 
-    console.log("try everythhing" ,productDetail.images)
-    return ( <motion.div className='cart-product-card'>
+    
+    return ( 
+        <AnimatePresence>
+    {displayItem && <motion.div className='cart-product-card'
+initial={{x:0}}
+animate={{x:0}}
+exit={{x:350}}
+    
+    >
         <div className='cart-product-image-container'>
             <img src={productDetail? productDetail.images[0].original: ""}></img>
         </div>
         <div className='cart-product-title-and-price-container'>
             <p className='cart-product-title'>{productDetail.title}</p>
-            <p className='cart-product-quantity'>Quantity: {productInfo.quantity}</p>
-            <p className='cart-product-price'>R{productInfo.price_incl_tax}</p>
+            <p className='cart-product-quantity'>Quantity: {props.quantity}</p>
+            <p className='cart-product-price'>R{props.price}</p>
         </div>
-        <button className='secondary-button cart-product-delete'><i className='bi bi-trash'></i></button>
-    </motion.div> );
+        <button className='secondary-button cart-product-delete' onClick={() => DeleteItem()}><i className='bi bi-trash'></i></button>
+    </motion.div>}
+    </AnimatePresence>
+    
+    );
 }
+
+
 
 export default Cart;
