@@ -43,6 +43,11 @@ a {
   line-height: 52px;
 }
 
+.page_content {
+  width: 90%;
+  margin: 0 auto;
+}
+
 .section-title-container a {
   color: #0056fd;
   cursor: pointer;

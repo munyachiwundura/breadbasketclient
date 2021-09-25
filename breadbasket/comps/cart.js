@@ -68,7 +68,9 @@ useEffect(() => {cartApi()},[])
                 <Link href='/checkout/'>
                 <button className='primary-button'>Checkout</button>
                 </Link>
+                <Link href='/cart/'>
                 <button className='secondary-button'>Edit Cart</button>
+                </Link>
             </div>
     </motion.div>
     
