@@ -27,7 +27,7 @@ export default function Home(props) {
         <meta property="og:image" content="https://thebreadbasket.herokuapp.com/img/billboard_image.png"/>
         <meta property="og:url" content="https://thebreadbasket.herokuapp.com"/>
       </Head>
-      <body>
+      <main>
      <Billboard billboardTitle='All your favorite Zimbabwean products' callToAction='Shop Now' link="/categories/All Categories">
                 <img id='billboardImageMultiProduct' className='jumbotron-image' src="/img/billboard_image.png"/>    
       </Billboard>
@@ -48,7 +48,7 @@ export default function Home(props) {
             <div className={styles.blogs_container}>
             {blog_articles.map(post => <BlogPostCard cover={"https://the-bread-basket.herokuapp.com" +post.Cover} blogTitle={post.Title} blogCategory="drinks"/>)}
             </div>
-      </body>
+      </main>
     </div>
   )
 }

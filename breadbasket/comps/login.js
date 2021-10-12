@@ -83,7 +83,7 @@ const Login = () => {
                 </div>
             </div>
 
-{login && <motion.div className='login-form'
+{login && <motion.form onSubmit={() => login_api()} className='login-form'
             initial='hidden' exit='hidden' animate='visible' variants={{
                 hidden: {
                 x: 350,
@@ -105,14 +105,14 @@ const Login = () => {
                 </div>
             </div>
             <div className='login-button'>
-                <button className='primary-button' onClick={() => login_api()}>Sign In</button>
+                <button type="submit" className='primary-button'>Sign In</button>
             </div>
             <div className='forgot-password'>
                 <p>Have you forgotten your password?</p>
                 <a>Click Here</a>
             </div>
-          </motion.div>}
-{!login && <motion.div className='login-form'
+          </motion.form>}
+{!login && <motion.form onSubmit={() => register_api()} className='login-form'
 initial='hidden' exit='hidden' animate='visible' variants={{
     hidden: {
       x: 350,
@@ -139,9 +139,9 @@ initial='hidden' exit='hidden' animate='visible' variants={{
             <div className='terms-checkbox'><input type='checkbox'/><p>Agree to our terms and conditions</p></div>
             <div className='register-button'>
                 
-                <button onClick={() => register_api()} className='primary-button'>Register</button>
+                <button type="submit" className='primary-button'>Register</button>
             </div>
-          </motion.div>}
+          </motion.form>}
         </div>
         
     </motion.div>
